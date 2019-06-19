@@ -1,0 +1,11 @@
+{
+    "name": "msami/endouble-api",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Mina Nabil Sami",
+            "email": "mina.nsami@gmail.com"
+        }
+    ],
+    "require": {}
+}

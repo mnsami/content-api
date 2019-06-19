@@ -1,0 +1,18 @@
+version: "3.1"
+
+services:
+  webserver:
+    build: docker/nginx/
+    container_name: endouble-nginx
+    restart: on-failure
+    tty: true
+    ports:
+      - "80:80"
+    volumes:
+      - ./logs/nginx/:/var/log/nginx:cached
+
+  php-fpm:
+    build: docker/php/
+    container_name: endouble-php-fpm
+    tty: true
+    restart: on-failure
