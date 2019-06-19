@@ -11,12 +11,17 @@ services:
     volumes:
       - ./:/var/www/api
       - ./logs/nginx/:/var/log/nginx:cached
+      - ./docker/nginx/endoubleapi.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - php-fpm
 
   php-fpm:
     build: docker/php/
     container_name: endouble-php-fpm
     tty: true
     restart: on-failure
+    ports:
+      - "9000:9000"
     volumes:
       - ./:/var/www/api
       - ./logs/api/logs/:/var/www/api/app/logs:cached
