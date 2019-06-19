@@ -11,17 +11,17 @@ endif
 app/config/parameters.yml:
 	cp app/config/parameters.yml.dist app/config/parameters.yml
 
-all: clear lint-composer composer lint-php lint-json lint-yaml lint-eol phpcs db-schema-create
+all: container-up clear lint-composer composer lint-php lint-json lint-yaml lint-eol phpcs db-schema-create
 
 composer:
 	@echo "\n==> Running composer install, runner $(RUNNER)"
 	$(CMD) $(COMPOSER) install
 
 cc:
-	rm -rf app/cache/*
+	rm -rf var/cache/* var/*.cache
 
 clear: cc
-	rm -rf build/* app/logs/* vendor/ web/bundles/ bin/
+	rm -rf build/* var/logs/* vendor/ web/bundles/
 
 lint: lint-json lint-yaml lint-php phpcs lint-composer lint-eol
 	@echo All good.

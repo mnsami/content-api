@@ -16,3 +16,7 @@ logs
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+
+# dev
+bin/phpcbf
+bin/phpcs
