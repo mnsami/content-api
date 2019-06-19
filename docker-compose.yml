@@ -9,6 +9,7 @@ services:
     ports:
       - "80:80"
     volumes:
+      - ./:/var/www/api
       - ./logs/nginx/:/var/log/nginx:cached
 
   php-fpm:
@@ -16,3 +17,6 @@ services:
     container_name: endouble-php-fpm
     tty: true
     restart: on-failure
+    volumes:
+      - ./:/var/www/api
+      - ./logs/api/logs/:/var/www/api/app/logs:cached
