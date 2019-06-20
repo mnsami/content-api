@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 class LaunchTest extends TestCase
 {
-    public function testPlayerCreatedSuccessfully()
+    public function testLaunchCreatedSuccessfully()
     {
         $launch = new Launch(
             new LaunchId(),
