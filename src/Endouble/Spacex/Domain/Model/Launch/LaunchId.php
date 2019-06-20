@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Endouble\Spacex\Domain\Model;
+namespace Endouble\Spacex\Domain\Model\Launch;
 
 use Ramsey\Uuid\Uuid;
 

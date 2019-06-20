@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Endouble\Spacex\Domain\Model;
+namespace Endouble\Spacex\Domain\Model\Launch;
 
 use Endouble\Shared\Domain\Model\Details;
 use Endouble\Shared\Domain\Model\Uri;
@@ -44,7 +44,7 @@ final class Launch
 
     public function id(): LaunchId
     {
-        return $this->id();
+        return $this->launchId;
     }
 
     public function missionName(): MissionName

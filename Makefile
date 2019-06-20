@@ -11,7 +11,7 @@ endif
 app/config/parameters.yml:
 	cp app/config/parameters.yml.dist app/config/parameters.yml
 
-all: container-up clear lint-composer composer lint-php lint-json lint-yaml lint-eol phpcs db-schema-create
+all: container-up clear composer lint-composer lint-php lint-json lint-yaml lint-eol phpcs db-schema-create tests
 
 composer:
 	@echo "\n==> Running composer install, runner $(RUNNER)"
@@ -53,6 +53,10 @@ phpcs:
 phpcbf:
 	$(CMD) bin/phpcbf
 
+tests:
+	@echo "\n==> Running tests"
+	$(CMD) bin/phpunit
+
 db-schema-create:
 	$(CMD) php bin/console doctrine:schema:create
 
@@ -73,4 +77,4 @@ container-up:
 
 tear-down: container-stop container-down
 
-.PHONY: container-up container-stop container-down tear-down all composer cc lint lint-eol lint-composer lint-json lint-yaml lint-php phpcs phpcbf db-schema-create db-schema-drop
+.PHONY: container-up container-stop container-down tear-down all composer cc lint lint-eol lint-composer lint-json lint-yaml lint-php phpcs phpcbf db-schema-create db-schema-drop tests
