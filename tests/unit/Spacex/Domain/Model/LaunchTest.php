@@ -18,7 +18,7 @@ class LaunchTest extends TestCase
         $launch = new Launch(
             new LaunchId(),
             new FlightNumber(1),
-            new Uri('http://example.com'),
+            Uri::createFromString('http://example.com'),
             new Details('something details'),
             new \DateTimeImmutable(),
             new MissionName('mission 1')
