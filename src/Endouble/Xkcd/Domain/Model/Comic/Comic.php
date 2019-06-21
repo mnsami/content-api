@@ -8,15 +8,15 @@ use Endouble\Shared\Domain\Model\Uri;
 final class Comic
 {
     /** @var ComicId */
-    private $comicId;
+    private $id;
 
     /** @var Uri */
     private $imageUrl;
 
-    /** @var ComicTitle */
+    /** @var Title */
     private $title;
 
-
+    /** @var AltText */
     private $altText;
 
     /** @var \DateTimeImmutable */
@@ -24,4 +24,50 @@ final class Comic
 
     /** @var Uri */
     private $link;
+
+    public function __construct(
+        ComicId $comicId,
+        Uri $imageUrl,
+        Title $title,
+        AltText $altText,
+        \DateTimeImmutable $publishDate,
+        Uri $link
+    ) {
+        $this->id = $comicId;
+        $this->imageUrl = $imageUrl;
+        $this->title = $title;
+        $this->altText = $altText;
+        $this->publishDate = $publishDate;
+        $this->link = $link;
+    }
+
+    public function id(): ComicId
+    {
+        return $this->id;
+    }
+
+    public function imageUrl(): Uri
+    {
+        return $this->imageUrl;
+    }
+
+    public function link(): Uri
+    {
+        return $this->link;
+    }
+
+    public function title(): Title
+    {
+        return $this->title;
+    }
+
+    public function altText(): AltText
+    {
+        return $this->altText;
+    }
+
+    public function publishDate(): \DateTimeImmutable
+    {
+        return $this->publishDate;
+    }
 }

@@ -5,7 +5,7 @@ namespace Endouble\Xkcd\Domain\Model\Comic;
 
 use Endouble\Shared\Domain\Model\Exception\SorryValidationError;
 
-final class ComicTitle
+final class Title
 {
     /** @var string */
     private $title;
