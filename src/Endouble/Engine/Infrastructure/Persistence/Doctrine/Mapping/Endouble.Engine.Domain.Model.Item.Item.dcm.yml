@@ -1,0 +1,24 @@
+Endouble\Engine\Domain\Model\Item\Item:
+  type: entity
+  id:
+    itemId:
+      column: id
+      type: ItemId
+  table: items
+  repositoryClass: Endouble\Engine\Infrastructure\Domain\Model\Item\DoctrineItemRepository
+  fields:
+    number:
+      type: Number
+      column: number
+    link:
+      type: Uri
+      column: link
+    details:
+      type: Details
+      column: details
+    date:
+      type: datetime
+      column: date
+    source:
+      type: DataSource
+      column: source
