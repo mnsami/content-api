@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Endouble\Xkcd\Domain\Model\Comic;
 
+use Endouble\Shared\Domain\Model\ImageUrl;
 use Endouble\Shared\Domain\Model\Uri;
 
 final class Comic
@@ -10,7 +11,7 @@ final class Comic
     /** @var ComicId */
     private $id;
 
-    /** @var Uri */
+    /** @var ImageUrl */
     private $imageUrl;
 
     /** @var Title */
@@ -27,7 +28,7 @@ final class Comic
 
     public function __construct(
         ComicId $comicId,
-        Uri $imageUrl,
+        ImageUrl $imageUrl,
         Title $title,
         AltText $altText,
         \DateTimeImmutable $publishDate,
@@ -46,7 +47,7 @@ final class Comic
         return $this->id;
     }
 
-    public function imageUrl(): Uri
+    public function imageUrl(): ImageUrl
     {
         return $this->imageUrl;
     }
