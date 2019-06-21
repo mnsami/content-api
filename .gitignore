@@ -2,6 +2,7 @@ logs
 /.web-server-pid
 /app/config/parameters.yml
 /build/
+coverage
 /phpunit.xml
 /var/*
 !/var/cache
@@ -21,3 +22,5 @@ logs
 bin/phpcbf
 bin/phpcs
 bin/phpunit
+
+.phpunit.result.cache

@@ -57,6 +57,10 @@ tests:
 	@echo "\n==> Running tests"
 	$(CMD) bin/phpunit
 
+coverage:
+	@echo "\n==> Generating coverage report"
+	$(CMD) bin/phpunit --coverage-html coverage
+
 db-schema-create:
 	$(CMD) php bin/console doctrine:schema:create
 
@@ -77,4 +81,4 @@ container-up:
 
 tear-down: container-stop container-down
 
-.PHONY: container-up container-stop container-down tear-down all composer cc lint lint-eol lint-composer lint-json lint-yaml lint-php phpcs phpcbf db-schema-create db-schema-drop tests
+.PHONY: container-up container-stop container-down tear-down all composer cc lint lint-eol lint-composer lint-json lint-yaml lint-php phpcs phpcbf db-schema-create db-schema-drop tests coverage

@@ -5,6 +5,11 @@ MAINTAINER Mina Sami <mina.nsami@gmail.com>
 RUN apk update \
     && apk add git curl vim wget bash
 
+RUN apk add --no-cache $PHPIZE_DEPS \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
