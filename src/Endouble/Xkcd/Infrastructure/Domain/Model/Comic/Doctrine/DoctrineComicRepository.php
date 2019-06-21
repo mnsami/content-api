@@ -51,6 +51,6 @@ class DoctrineComicRepository extends EntityRepository implements ComicRepositor
      */
     public function comics(): array
     {
-        // TODO: Implement comics() method.
+        return $this->findAll();
     }
 }
