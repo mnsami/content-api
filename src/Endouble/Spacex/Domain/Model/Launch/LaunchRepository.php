@@ -13,9 +13,9 @@ interface LaunchRepository
 
     /**
      * @param LaunchId $launchId
-     * @return null|LaunchId
+     * @return null|Launch
      */
-    public function ofId(LaunchId $launchId): ?LaunchId;
+    public function ofId(LaunchId $launchId): ?Launch;
 
     /**
      * @return LaunchId
