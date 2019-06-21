@@ -18,7 +18,7 @@ Endouble\Spacex\Domain\Model\Launch\Launch:
       column: details
     launchDate:
       type: datetime
-      column: launch_date
+      column: launched_at_date
     missionName:
       type: MissionName
       column: mission_name
