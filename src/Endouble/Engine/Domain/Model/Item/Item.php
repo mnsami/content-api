@@ -23,6 +23,9 @@ final class Item
     /** @var Number */
     private $number;
 
+    /** @var Source */
+    private $source;
+
     public function id(): ItemId
     {
         return $this->itemId;
@@ -46,5 +49,10 @@ final class Item
     public function number(): Number
     {
         return $this->number;
+    }
+
+    public function source(): Source
+    {
+        return $this->source;
     }
 }
