@@ -3,7 +3,6 @@ logs
 /app/config/parameters.yml
 /build/
 coverage
-/phpunit.xml
 /var/*
 !/var/cache
 /var/cache/*
