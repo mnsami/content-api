@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Endouble\Spacex\Domain\Model\Launch;
+namespace Endouble\Engine\Domain\Model\Item;
 
 use Ramsey\Uuid\Uuid;
 
-final class LaunchId
+class ItemId
 {
     /** @var string */
     private $id;
@@ -15,9 +15,9 @@ final class LaunchId
         $this->id = null === $id ? Uuid::uuid4()->toString() : $id;
     }
 
-    public function equals(LaunchId $launchId)
+    public function equals(ItemId $itemId)
     {
-        return $this->id === (string) $launchId;
+        return $this->id === (string) $itemId;
     }
 
     public function __toString(): string
