@@ -45,6 +45,19 @@ services:
         arguments:
             $client: '@guzzle.client'
 
+    endouble.item.repository:
+        class: Doctrine\ORM\EntityRepository
+        public: true
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments: ['Endouble\Engine\Domain\Model\Item\Item']
+
+    endouble.application.get_all_past_launches:
+        class: Endouble\Engine\Application\GetAllPastLaunches\GetAllPastLaunchesCommandHandler
+        public: true
+        arguments:
+            $itemService: '@endouble.item.translating.service'
+            $itemRepository: '@endouble.item.repository'
+
     endouble.item.translating.service:
         class: Endouble\Engine\Infrastructure\Service\TranslatingItemService
         public: true
