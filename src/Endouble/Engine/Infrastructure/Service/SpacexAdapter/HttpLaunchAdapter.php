@@ -13,6 +13,7 @@ class HttpLaunchAdapter implements LaunchAdapter
     private const BASE_POINT = "https://api.spacexdata.com/v3";
 
     private const LAUNCHES = "/launches";
+    private const PAST_LAUNCHES = self::LAUNCHES . "/past";
     private const UPCOMING_LAUNCHES = self::LAUNCHES . '/upcoming';
     private const LATEST_LAUNCH = self::LAUNCHES . '/latest';
     private const NEXT_LAUNCH = self::LAUNCHES . '/next';
@@ -47,7 +48,7 @@ class HttpLaunchAdapter implements LaunchAdapter
         }
 
         $response = $this->client->get(
-            $this->buildUrl(self::LAUNCHES),
+            $this->buildUrl(self::PAST_LAUNCHES),
             [
                 'query' => $params
             ]
@@ -55,8 +56,9 @@ class HttpLaunchAdapter implements LaunchAdapter
 
         $items = [];
         if (Response::HTTP_OK === $response->getStatusCode()) {
+            $body = $response->getBody()->getContents();
             $items = (new ItemTranslator())->toItemsFromLaunches(
-                json_decode($response->getBody(), true)
+                json_decode($body, true)
             );
         }
 
