@@ -21,7 +21,7 @@ cc:
 	rm -rf var/cache/* var/*.cache
 
 clear: cc
-	rm -rf build/* var/logs/* vendor/ web/bundles/
+	rm -rf build/* var/logs/* vendor/ web/bundles/ bin/doc* bin/php* bin/security_checker bin/simple_phpunit
 
 lint: lint-json lint-yaml lint-php phpcs lint-composer lint-eol
 	@echo All good.

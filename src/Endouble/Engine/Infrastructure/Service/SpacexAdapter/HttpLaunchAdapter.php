@@ -10,12 +10,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HttpLaunchAdapter implements LaunchAdapter
 {
-    private const base_endpoint = "https://api.spacexdata.com/v3";
+    private const BASE_POINT = "https://api.spacexdata.com/v3";
 
-    private const launches = "/launches";
-    private const upcoming_launches = self::launches . '/upcoming';
-    private const latest_launch = self::launches . '/latest';
-    private const next_launch = self::launches . '/next';
+    private const LAUNCHES = "/launches";
+    private const UPCOMING_LAUNCHES = self::LAUNCHES . '/upcoming';
+    private const LATEST_LAUNCH = self::LAUNCHES . '/latest';
+    private const NEXT_LAUNCH = self::LAUNCHES . '/next';
 
     /** @var Client */
     private $client;
@@ -27,7 +27,7 @@ class HttpLaunchAdapter implements LaunchAdapter
 
     private function buildUrl(string $endpoint): string
     {
-        return self::base_endpoint . $endpoint;
+        return self::BASE_POINT . $endpoint;
     }
 
     /**
@@ -47,7 +47,7 @@ class HttpLaunchAdapter implements LaunchAdapter
         }
 
         $response = $this->client->get(
-            $this->buildUrl(self::launches),
+            $this->buildUrl(self::LAUNCHES),
             [
                 'query' => $params
             ]
@@ -80,7 +80,7 @@ class HttpLaunchAdapter implements LaunchAdapter
         }
 
         $response = $this->client->get(
-            $this->buildUrl(self::upcoming_launches),
+            $this->buildUrl(self::UPCOMING_LAUNCHES),
             [
                 'query' => $params
             ]
@@ -102,7 +102,7 @@ class HttpLaunchAdapter implements LaunchAdapter
     public function toItemFromLatestLaunch(): ?Item
     {
         $response = $this->client->get(
-            $this->buildUrl(self::latest_launch)
+            $this->buildUrl(self::LATEST_LAUNCH)
         );
 
         $item = null;
@@ -121,7 +121,7 @@ class HttpLaunchAdapter implements LaunchAdapter
     public function toItemFromNextLaunch(): ?Item
     {
         $response = $this->client->get(
-            $this->buildUrl(self::next_launch)
+            $this->buildUrl(self::NEXT_LAUNCH)
         );
 
         $item = null;

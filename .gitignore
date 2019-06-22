@@ -18,8 +18,8 @@ coverage
 /web/bundles/
 
 # dev
-bin/phpcbf
-bin/phpcs
-bin/phpunit
+bin/*
+!/bin/console
+!/bin/symfony_requirements
 
 .phpunit.result.cache

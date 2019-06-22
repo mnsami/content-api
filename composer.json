@@ -2,6 +2,7 @@
     "name": "mnsami/endouble-api",
     "license": "MIT",
     "type": "project",
+    "description": "endouble api",
     "authors": [
         {
             "name": "Mina Nabil Sami",
