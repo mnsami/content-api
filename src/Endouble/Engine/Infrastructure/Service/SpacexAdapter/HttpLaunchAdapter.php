@@ -5,7 +5,7 @@ namespace Endouble\Engine\Infrastructure\Service\SpacexAdapter;
 
 use Endouble\Engine\Domain\Model\Item\Item;
 use Endouble\Engine\Infrastructure\Service\ItemTranslator;
-use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 class HttpLaunchAdapter implements LaunchAdapter
@@ -20,7 +20,7 @@ class HttpLaunchAdapter implements LaunchAdapter
     /** @var Client */
     private $client;
 
-    public function __construct(Client $client)
+    public function __construct(ClientInterface $client)
     {
         $this->client = $client;
     }
