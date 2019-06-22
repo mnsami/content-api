@@ -14,7 +14,7 @@ class NumberType extends IntegerType
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value;
+        return $value->value();
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
