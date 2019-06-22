@@ -26,6 +26,22 @@ final class Item
     /** @var Source */
     private $source;
 
+    public function __construct(
+        ItemId $itemId,
+        Uri $link,
+        \DateTimeImmutable $date,
+        Details $details,
+        Number $number,
+        Source $source
+    ) {
+        $this->itemId = $itemId;
+        $this->link = $link;
+        $this->date = $date;
+        $this->details = $details;
+        $this->number = $number;
+        $this->source = $source;
+    }
+
     public function id(): ItemId
     {
         return $this->itemId;
