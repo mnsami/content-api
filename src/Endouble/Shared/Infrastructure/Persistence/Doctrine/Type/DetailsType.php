@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Endouble\Shared\Infrastructure\Persistence\Doctrine\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\GuidType;
+use Doctrine\DBAL\Types\TextType;
 use Endouble\Shared\Domain\Model\Details;
 
-class DetailsType extends GuidType
+class DetailsType extends TextType
 {
     private const DETAILS = "Details";
     private const NAMESPACE = "Endouble\Shared\Domain\Model";

@@ -4,10 +4,11 @@ declare(strict_types=1);
 namespace Endouble\Engine\Infrastructure\Persistence\Doctrine\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\GuidType;
+use Doctrine\DBAL\Platforms\MySqlPlatform;
+use Doctrine\DBAL\Types\StringType;
 use Endouble\Shared\Domain\Model\Uri;
 
-class UriType extends GuidType
+class UriType extends StringType
 {
     private const URI = "Uri";
     private const NAMESPACE = "Endouble\Engine\Domain\Model\Item";

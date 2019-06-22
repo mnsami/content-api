@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Endouble\Engine\Infrastructure\Persistence\Doctrine\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\GuidType;
+use Doctrine\DBAL\Types\IntegerType;
 
-class NumberType extends GuidType
+class NumberType extends IntegerType
 {
     private const SOURCE = "Source";
     private const NAMESPACE = "Endouble\Engine\Domain\Model\Item";

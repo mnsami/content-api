@@ -4,21 +4,27 @@ Endouble\Engine\Domain\Model\Item\Item:
     itemId:
       column: id
       type: ItemId
+      nullable: false
   table: items
   repositoryClass: Endouble\Engine\Infrastructure\Domain\Model\Item\DoctrineItemRepository
   fields:
     number:
       type: Number
       column: number
+      nullable: false
     link:
       type: Uri
       column: link
+      length: 512
     details:
       type: Details
       column: details
+      nullable: false
     date:
       type: datetime
       column: date
+      nullable: false
     source:
       type: Source
       column: source
+      nullable: false
