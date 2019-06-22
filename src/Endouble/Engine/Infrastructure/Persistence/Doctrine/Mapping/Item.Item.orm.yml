@@ -6,7 +6,7 @@ Endouble\Engine\Domain\Model\Item\Item:
       type: ItemId
       nullable: false
   table: items
-  repositoryClass: Endouble\Engine\Infrastructure\Domain\Model\Item\DoctrineItemRepository
+  repositoryClass: Endouble\Engine\Infrastructure\Domain\Model\Item\Doctrine\DoctrineItemRepository
   fields:
     number:
       type: Number
@@ -28,3 +28,4 @@ Endouble\Engine\Domain\Model\Item\Item:
       type: Source
       column: source
       nullable: false
+      length: 16
