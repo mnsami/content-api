@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Endouble\Engine\Infrastructure\Persistence\Doctrine\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\GuidType;
+use Doctrine\DBAL\Types\StringType;
 use Endouble\Engine\Domain\Model\Item\Source;
 
-class SourceType extends GuidType
+class SourceType extends StringType
 {
     private const SOURCE = "Source";
     private const NAMESPACE = "Endouble\Engine\Domain\Model\Item";

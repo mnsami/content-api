@@ -5,6 +5,7 @@ namespace Endouble\Engine\Infrastructure\Persistence\Doctrine\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\IntegerType;
+use Endouble\Engine\Domain\Model\Item\Number;
 
 class NumberType extends IntegerType
 {
@@ -18,7 +19,7 @@ class NumberType extends IntegerType
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return new Source($value);
+        return new Number($value);
     }
 
     public function getName()
