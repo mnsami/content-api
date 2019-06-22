@@ -29,8 +29,28 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    Endouble\Engine\:
-        resource: '../../src/Endouble/Engine/*'
+    guzzle.client:
+        class: GuzzleHttp\Client
+        public: true
+
+    http.spacex.launch.adapter:
+        class: Endouble\Engine\Infrastructure\Service\SpacexAdapter\HttpLaunchAdapter
+        public: true
+        arguments:
+            $client: '@guzzle.client'
+
+    http.xkcd.comic.adapter:
+        class: Endouble\Engine\Infrastructure\Service\XkcdAdapter\HttpComicAdapter
+        public: true
+        arguments:
+            $client: '@guzzle.client'
+
+    endouble.item.translating.service:
+        class: Endouble\Engine\Infrastructure\Service\TranslatingItemService
+        public: true
+        arguments:
+            $launchAdapter: '@http.spacex.launch.adapter'
+            $comicAdapter: '@http.xkcd.comic.adapter'
 
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
