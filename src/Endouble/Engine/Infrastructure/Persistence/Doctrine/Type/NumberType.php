@@ -9,7 +9,7 @@ use Endouble\Engine\Domain\Model\Item\Number;
 
 class NumberType extends IntegerType
 {
-    private const SOURCE = "Source";
+    private const NUMBER = "Number";
     private const NAMESPACE = "Endouble\Engine\Domain\Model\Item";
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
@@ -24,7 +24,7 @@ class NumberType extends IntegerType
 
     public function getName()
     {
-        return self::SOURCE;
+        return self::NUMBER;
     }
 
     protected function getNamespace()
