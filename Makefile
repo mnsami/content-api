@@ -41,7 +41,7 @@ lint-json:
 
 lint-yaml:
 	@echo "\n==> Validating all yaml files:"
-	@find app/config src -type f -name \*.yml | while read file; do echo -n "$$file"; php app/console --no-debug --no-interaction --env=test lint:yaml "$$file" || exit 1; done
+	@find app/config src -type f -name \*.yml | while read file; do echo -n "$$file"; php bin/console --no-debug --no-interaction --env=test lint:yaml "$$file" || exit 1; done
 
 lint-php:
 	@echo "\n==> Validating all php files:"
