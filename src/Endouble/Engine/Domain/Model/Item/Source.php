@@ -19,7 +19,7 @@ final class Source
         self::XKCD
     ];
 
-    private function __construct(string $source)
+    public function __construct(string $source)
     {
         $this->validate($source);
 

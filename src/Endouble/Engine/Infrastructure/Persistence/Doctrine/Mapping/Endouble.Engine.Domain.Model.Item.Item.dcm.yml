@@ -20,5 +20,5 @@ Endouble\Engine\Domain\Model\Item\Item:
       type: datetime
       column: date
     source:
-      type: DataSource
+      type: Source
       column: source
