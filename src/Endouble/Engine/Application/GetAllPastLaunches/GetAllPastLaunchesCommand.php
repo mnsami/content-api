@@ -13,7 +13,7 @@ final class GetAllPastLaunchesCommand implements Command
     /** @var int */
     private $limit;
 
-    public function __construct(int $year, int $limit)
+    public function __construct(int $year = 0, int $limit = 0)
     {
         $this->year = $year;
         $this->limit = $limit;

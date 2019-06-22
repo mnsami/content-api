@@ -12,11 +12,12 @@ final class Details
 
     public function __construct(string $details)
     {
-        if (empty($details)) {
-            throw new SorryValidationError('Details can not be empty.');
-        }
-
         $this->details = $details;
+    }
+
+    public static function createEmpty(): Details
+    {
+        return new self('');
     }
 
     public function __toString(): string
