@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Endouble\Engine\Infrastructure\Persistence\Doctrine\Type;
 
+use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\GuidType;
 
 class NumberType extends GuidType

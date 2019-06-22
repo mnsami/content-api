@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Endouble\Engine\Infrastructure\Persistence\Doctrine\Type;
 
+use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\GuidType;
 use Endouble\Engine\Domain\Model\Item\ItemId;
 
@@ -23,7 +24,7 @@ class ItemIdType extends GuidType
 
     public function getName()
     {
-        return self::AQUARIUM_ID;
+        return self::ITEM_ID;
     }
 
     protected function getNamespace()
