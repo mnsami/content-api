@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Endouble\Engine\Application\GetAllPastLaunches;
 
+use Endouble\Engine\Domain\Model\Item\Item;
 use Endouble\Engine\Domain\Model\Item\ItemRepository;
 use Endouble\Engine\Domain\Model\Item\ItemService;
 use Endouble\Shared\Application\Command;
@@ -43,8 +44,11 @@ class GetAllPastLaunchesCommandHandler implements CommandHandler
 
         $items = $this->itemService->itemsFromPastLaunches($command->year(), $command->limit());
 
+        /** @var Item $item */
         foreach ($items as $item) {
             $this->itemRepository->add($item);
         }
+
+        return new GetAllPastLaunchesResponseDto(...$items);
     }
 }

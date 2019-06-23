@@ -20,6 +20,10 @@ final class GetAllPastLaunchesResponseDto implements DataTransformer
      */
     public function toArray(): array
     {
-        // TODO: Implement toArray() method.
+        $itemIds = array_map(function (Item $item) {
+            return (string) $item->id();
+        }, $this->items);
+
+        return $itemIds;
     }
 }
