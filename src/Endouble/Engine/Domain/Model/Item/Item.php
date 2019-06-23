@@ -20,7 +20,7 @@ final class Item
     /** @var Details */
     private $details;
 
-    /** @var Number */
+    /** @var ItemNumber */
     private $number;
 
     /** @var Source */
@@ -31,7 +31,7 @@ final class Item
         Uri $link,
         \DateTimeImmutable $date,
         Details $details,
-        Number $number,
+        ItemNumber $number,
         Source $source
     ) {
         $this->itemId = $itemId;
@@ -62,7 +62,7 @@ final class Item
         return $this->details;
     }
 
-    public function number(): Number
+    public function number(): ItemNumber
     {
         return $this->number;
     }

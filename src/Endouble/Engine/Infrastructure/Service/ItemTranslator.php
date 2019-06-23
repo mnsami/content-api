@@ -5,7 +5,7 @@ namespace Endouble\Engine\Infrastructure\Service;
 
 use Endouble\Engine\Domain\Model\Item\Item;
 use Endouble\Engine\Domain\Model\Item\ItemId;
-use Endouble\Engine\Domain\Model\Item\Number;
+use Endouble\Engine\Domain\Model\Item\ItemNumber;
 use Endouble\Engine\Domain\Model\Item\Source;
 use Endouble\Shared\Domain\Model\Details;
 use Endouble\Shared\Domain\Model\Uri;
@@ -21,7 +21,7 @@ class ItemTranslator
                 Uri::createFromString($item['links']['wikipedia']),
                 (new \DateTimeImmutable())->setTimestamp($item['launch_date_unix']),
                 $item['details'] ? new Details($item['details']) : Details::createEmpty(),
-                new Number($item['flight_number']),
+                new ItemNumber($item['flight_number']),
                 Source::createSpacexSource()
             );
         }

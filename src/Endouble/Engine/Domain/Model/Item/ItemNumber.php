@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Endouble\Engine\Domain\Model\Item;
 
-final class Number
+final class ItemNumber
 {
     /** @var int */
     private $number;
@@ -11,6 +11,11 @@ final class Number
     public function __construct(int $number)
     {
         $this->number = $number;
+    }
+
+    public static function createFromString(string $number): ItemNumber
+    {
+        return new self(intval($number));
     }
 
     public function value(): int

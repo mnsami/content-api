@@ -6,7 +6,9 @@ namespace Endouble\Engine\Infrastructure\Domain\Model\Item\Doctrine;
 use Doctrine\ORM\EntityRepository;
 use Endouble\Engine\Domain\Model\Item\Item;
 use Endouble\Engine\Domain\Model\Item\ItemId;
+use Endouble\Engine\Domain\Model\Item\ItemNumber;
 use Endouble\Engine\Domain\Model\Item\ItemRepository;
+use Endouble\Engine\Domain\Model\Item\Source;
 
 class DoctrineItemRepository extends EntityRepository implements ItemRepository
 {
@@ -41,5 +43,20 @@ class DoctrineItemRepository extends EntityRepository implements ItemRepository
     public function launches(): array
     {
         return $this->findAll();
+    }
+
+    /**
+     * @param ItemNumber $number
+     * @param Source $source
+     * @return Item|null
+     */
+    public function ofNumberAndSource(ItemNumber $number, Source $source): ?Item
+    {
+        $item = $this->findOneBy([
+            'number' => $number->value(),
+            'source' => (string) $source
+        ]);
+
+        return $item;
     }
 }

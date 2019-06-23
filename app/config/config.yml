@@ -48,7 +48,7 @@ doctrine:
         charset: UTF8
         types:
             ItemId: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\ItemIdType
-            Number: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\NumberType
+            ItemNumber: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\ItemNumberType
             Uri: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\UriType
             Source: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\SourceType
             Details: Endouble\Shared\Infrastructure\Persistence\Doctrine\Type\DetailsType

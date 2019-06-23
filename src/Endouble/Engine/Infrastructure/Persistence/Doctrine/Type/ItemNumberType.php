@@ -5,21 +5,25 @@ namespace Endouble\Engine\Infrastructure\Persistence\Doctrine\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\IntegerType;
-use Endouble\Engine\Domain\Model\Item\Number;
+use Endouble\Engine\Domain\Model\Item\ItemNumber;
 
-class NumberType extends IntegerType
+class ItemNumberType extends IntegerType
 {
-    private const NUMBER = "Number";
+    private const NUMBER = "ItemNumber";
     private const NAMESPACE = "Endouble\Engine\Domain\Model\Item";
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value->value();
+        if ($value instanceof ItemNumber) {
+            return $value->value();
+        }
+
+        return $value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return new Number($value);
+        return ItemNumber::createFromString($value);
     }
 
     public function getName()

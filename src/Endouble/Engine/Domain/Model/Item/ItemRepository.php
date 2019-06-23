@@ -18,6 +18,13 @@ interface ItemRepository
     public function ofId(ItemId $itemId): ?Item;
 
     /**
+     * @param ItemNumber $number
+     * @param Source $source
+     * @return Item|null
+     */
+    public function ofNumberAndSource(ItemNumber $number, Source $source): ?Item;
+
+    /**
      * @return ItemId
      */
     public function nextIdentity(): ItemId;
