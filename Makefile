@@ -11,7 +11,7 @@ endif
 app/config/parameters.yml:
 	cp app/config/parameters.yml.dist app/config/parameters.yml
 
-all: container-up clear composer lint-composer lint-php lint-json lint-yaml lint-eol phpcs db-schema-create tests
+all: container-up clear composer lint-composer lint-php lint-json lint-eol phpcs orm-database-create orm-schema-create tests
 
 composer:
 	@echo "\n==> Running composer install, runner $(RUNNER)"
@@ -41,7 +41,7 @@ lint-json:
 
 lint-yaml:
 	@echo "\n==> Validating all yaml files:"
-	@find app/config src -type f -name \*.yml | while read file; do echo -n "$$file"; php bin/console --no-debug --no-interaction --env=test lint:yaml "$$file" || exit 1; done
+	@find app/config src -type f -name \*.yml | while read file; do echo -n "$$file"; $(CMD) php bin/console --no-debug --no-interaction --env=test lint:yaml "$$file" || exit 1; done
 
 lint-php:
 	@echo "\n==> Validating all php files:"
@@ -61,10 +61,18 @@ coverage:
 	@echo "\n==> Generating coverage report"
 	$(CMD) bin/phpunit --coverage-html coverage
 
-db-schema-create:
+orm-database-create:
+	@echo "\n==> Creating database"
+	$(CMD) php bin/console doctrine:database:create
+
+orm-database-drop:
+	@echo "\n==> Dropping database"
+	$(CMD) php bin/console doctrine:database:drop --force
+
+orm-schema-create:
 	$(CMD) php bin/console doctrine:schema:create
 
-db-schema-drop:
+orm-schema-drop:
 	$(CMD) php bin/console doctrine:schema:drop --force
 
 container-stop:
@@ -81,4 +89,4 @@ container-up:
 
 tear-down: container-stop container-down
 
-.PHONY: container-up container-stop container-down tear-down all composer cc lint lint-eol lint-composer lint-json lint-yaml lint-php phpcs phpcbf db-schema-create db-schema-drop tests coverage
+.PHONY: container-up container-stop container-down tear-down all composer cc lint lint-eol lint-composer lint-json lint-yaml lint-php phpcs phpcbf orm-database-create orm-database-drop orm-schema-create orm-schema-drop tests coverage
