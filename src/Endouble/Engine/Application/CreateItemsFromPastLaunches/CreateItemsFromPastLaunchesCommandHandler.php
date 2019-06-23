@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Endouble\Engine\Application\GetAllPastLaunches;
+namespace Endouble\Engine\Application\CreateItemsFromPastLaunches;
 
 use Endouble\Engine\Domain\Model\Item\Item;
 use Endouble\Engine\Domain\Model\Item\ItemRepository;
@@ -11,7 +11,7 @@ use Endouble\Shared\Application\CommandHandler;
 use Endouble\Shared\Application\DataTransformer;
 use Endouble\Shared\Application\Exception\SorryWrongCommand;
 
-class GetAllPastLaunchesCommandHandler implements CommandHandler
+class CreateItemsFromPastLaunchesCommandHandler implements CommandHandler
 {
     /** @var ItemService */
     private $itemService;
@@ -30,7 +30,7 @@ class GetAllPastLaunchesCommandHandler implements CommandHandler
      */
     public function handles(): string
     {
-        return GetAllPastLaunchesCommand::class;
+        return CreateItemsFromPastLaunchesCommand::class;
     }
 
     /**
@@ -38,17 +38,21 @@ class GetAllPastLaunchesCommandHandler implements CommandHandler
      */
     public function handle(Command $command): DataTransformer
     {
-        if (!$command instanceof GetAllPastLaunchesCommand) {
+        if (!$command instanceof CreateItemsFromPastLaunchesCommand) {
             throw new SorryWrongCommand();
         }
 
         $items = $this->itemService->itemsFromPastLaunches($command->year(), $command->limit());
 
+        $response = [];
         /** @var Item $item */
         foreach ($items as $item) {
-            $this->itemRepository->add($item);
+            if (!$this->itemRepository->ofNumberAndSource($item->number(), $item->source())) {
+                $this->itemRepository->add($item);
+                $response[] = $item;
+            }
         }
 
-        return new GetAllPastLaunchesResponseDto(...$items);
+        return new CreateItemsFromPastLaunchesResponseDto(...$response);
     }
 }

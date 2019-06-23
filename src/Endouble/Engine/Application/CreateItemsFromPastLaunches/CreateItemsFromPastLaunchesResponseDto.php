@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Endouble\Engine\Application\GetAllPastLaunches;
+namespace Endouble\Engine\Application\CreateItemsFromPastLaunches;
 
 use Endouble\Engine\Domain\Model\Item\Item;
 use Endouble\Shared\Application\DataTransformer;
 
-final class GetAllPastLaunchesResponseDto implements DataTransformer
+final class CreateItemsFromPastLaunchesResponseDto implements DataTransformer
 {
     private $items;
 
