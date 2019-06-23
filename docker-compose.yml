@@ -22,7 +22,7 @@ services:
     volumes:
       - ./:/var/www/api
       - ./logs/nginx/:/var/log/nginx:cached
-      - ./docker/nginx/endoubleapi.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/endoubleapi.conf:/etc/nginx/conf.d/default.conf:cached
     links:
       - mysql
       - php-fpm
