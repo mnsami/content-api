@@ -6,10 +6,18 @@ Endouble\Engine\Domain\Model\Item\Item:
       type: ItemId
       nullable: false
   table: items
+  uniqueConstraints:
+    id_idx:
+      columns: [ id ]
+  indexes:
+    number_index:
+      columns: [ number ]
+    number_source_index:
+      columns: [ number, source ]
   repositoryClass: Endouble\Engine\Infrastructure\Domain\Model\Item\Doctrine\DoctrineItemRepository
   fields:
     number:
-      type: Number
+      type: ItemNumber
       column: number
       nullable: false
     link:
