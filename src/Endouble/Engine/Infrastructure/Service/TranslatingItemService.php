@@ -57,9 +57,9 @@ class TranslatingItemService implements ItemService
     /**
      * @inheritDoc
      */
-    public function itemsFromComics(): array
+    public function itemsFromComics(int $year = 0, int $limit = 0): array
     {
-        // TODO: Implement itemsFromComics() method.
+        return $this->comicAdapter->toItemsFromComics($year, $limit);
     }
 
     /**
