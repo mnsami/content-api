@@ -24,7 +24,7 @@ final class Uri
         $sanitized = filter_var($uri, FILTER_SANITIZE_URL);
 
         if (filter_var($sanitized, FILTER_VALIDATE_URL) === false) {
-            throw new SorryInvalidUrl();
+            throw new SorryInvalidUrl('Invalid Url: ' . $uri);
         }
     }
 
