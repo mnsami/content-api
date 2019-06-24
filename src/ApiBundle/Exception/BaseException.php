@@ -10,12 +10,12 @@ class BaseException extends \Exception implements HttpExceptionInterface
     protected $httpStatusCode = 500;
 
     public function getStatusCode()
-{
-    return $this->httpStatusCode;
-}
+    {
+        return $this->httpStatusCode;
+    }
 
     public function getHeaders()
-{
-    return array();
-}
+    {
+        return array();
+    }
 }

@@ -17,7 +17,9 @@ class ItemTranslator
     {
         $items = [];
         foreach ($launchesRepresentation as $item) {
-            $uri = $item['links']['article_link'] ? Uri::createFromString($item['links']['article_link']) : Uri::createEmpty();
+            $uri
+                = $item['links']['article_link'] ?
+                    Uri::createFromString($item['links']['article_link']) : Uri::createEmpty();
             $items[] = new Item(
                 new ItemId(),
                 new Name($item['mission_name']),
@@ -34,8 +36,12 @@ class ItemTranslator
 
     public function toItemFromLaunch(array $launchRepresentation): ?Item
     {
-        $details = $launchRepresentation['details'] ? new Details($launchRepresentation['details']) : Details::createEmpty();
-        $uri = $item['links']['article_link'] ? Uri::createFromString($item['links']['article_link']) : Uri::createEmpty();
+        $details
+            = $launchRepresentation['details'] ?
+            new Details($launchRepresentation['details']) : Details::createEmpty();
+        $uri
+            = $launchRepresentation['links']['article_link'] ?
+            Uri::createFromString($launchRepresentation['links']['article_link']) : Uri::createEmpty();
         $date = (new \DateTimeImmutable())
             ->setTimestamp($launchRepresentation['launch_date_unix']);
         return new Item(
@@ -51,7 +57,9 @@ class ItemTranslator
 
     public function toItemFromComic(array $comicRepresentation): ?Item
     {
-        $details = $comicRepresentation['alt'] ? new Details($comicRepresentation['alt']) : Details::createEmpty();
+        $details
+            = $comicRepresentation['alt'] ?
+            new Details($comicRepresentation['alt']) : Details::createEmpty();
         $date = (new \DateTimeImmutable())->setDate(
             intval($comicRepresentation['year']),
             intval($comicRepresentation['month']),

@@ -32,6 +32,4 @@ final class ItemsListResponseDto implements DataTransformer
 
         return $items;
     }
-
-
 }
