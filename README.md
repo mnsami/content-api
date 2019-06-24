@@ -13,7 +13,9 @@ Memcached is used to cache responses using the request information as cache key.
 Caching keys are being cached for 1 day only.
 
 I used the default Symfony Memcached adapter.
-https://symfony.com/doc/3.4/components/cache/adapters/memcached_adapter.html     
+https://symfony.com/doc/3.4/components/cache/adapters/memcached_adapter.html
+
+Cache keys are generated like using this formula `sourceId_year_limit`, from the request.
     
 ### 2. Installations
 
@@ -23,8 +25,12 @@ https://symfony.com/doc/3.4/components/cache/adapters/memcached_adapter.html
     
         git clone git@github.com:mnsami/endouble-api.git
         cd endouble-api
+        
+    1.2. copy `parameters.yml`
     
-    1.2. Start the containers and install dependencies
+        make
+    
+    1.3. Start the containers and install dependencies
 
         make all
 
@@ -49,3 +55,21 @@ i.e. `http://localhost/v1/items`
   - **sourceId:** Data source, **type:** string, **required:** true
   - **year:** year, **type:** integer, **required:** false
   - **limit:** limit, **type:** integer, **required:** false
+
+### 4. Helper Make commands
+
+I like to use `make` for my projects, hence below are some helper `make` commands
+
+- `make all`: Start up the container services and install project dependencies.
+- `make composer`: Install composer dependencies.
+- `make cc`: Remove symfony caches.
+- `make clear`: Delete vendor. cache, logs and library binaries.
+- `make lint`: Lint all php, yml, json and composer.
+- `make phpcs`: Run code sniffer to check styles.
+- `make phpcbf`: fix styles.
+- `make tests`: Run tests
+- `make coverage`: Generate coverage report
+- `make tear-down`: Stop all containers and down.
+- `make container-up`: Start all container services
+- `make container-stop`: Stop all containers services.
+- `make container-down`: down all containers.
