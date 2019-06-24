@@ -5,7 +5,7 @@ namespace Endouble\Engine\Infrastructure\Service\XkcdAdapter;
 
 use Endouble\Engine\Domain\Model\Item\Item;
 use Endouble\Engine\Infrastructure\Service\ItemTranslator;
-use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler;
 
 class HttpComicAdapter implements ComicAdapter
@@ -17,12 +17,12 @@ class HttpComicAdapter implements ComicAdapter
     private const LATEST_COMIC = "/info.0.json";
     private const ONE_COMIC = "/%s/info.0.json";
 
-    /** @var ClientInterface */
+    /** @var Client */
     private $client;
 
     private $crawler;
 
-    public function __construct(ClientInterface $client)
+    public function __construct(Client $client)
     {
         $this->client = $client;
         $this->crawler = new Crawler();
