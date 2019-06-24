@@ -3,13 +3,14 @@ declare(strict_types=1);
 
 namespace Endouble\Engine\Application\CreateItemsFromPastLaunches;
 
-use Endouble\Engine\Domain\Model\Item\Item;
 use Endouble\Engine\Domain\Model\Item\ItemRepository;
 use Endouble\Engine\Domain\Model\Item\ItemService;
+use Endouble\Engine\Domain\Model\Item\Source;
 use Endouble\Shared\Application\Command;
 use Endouble\Shared\Application\CommandHandler;
 use Endouble\Shared\Application\DataTransformer;
 use Endouble\Shared\Application\Exception\SorryWrongCommand;
+use Psr\Cache\CacheItemPoolInterface;
 
 class CreateItemsFromPastLaunchesCommandHandler implements CommandHandler
 {
@@ -19,10 +20,17 @@ class CreateItemsFromPastLaunchesCommandHandler implements CommandHandler
     /** @var ItemRepository */
     private $itemRepository;
 
-    public function __construct(ItemService $itemService, ItemRepository $itemRepository)
-    {
+    /** @var CacheItemPoolInterface */
+    private $cacheItemPool;
+
+    public function __construct(
+        ItemService $itemService,
+        ItemRepository $itemRepository,
+        CacheItemPoolInterface $cacheItemPool
+    ) {
         $this->itemService = $itemService;
         $this->itemRepository = $itemRepository;
+        $this->cacheItemPool = $cacheItemPool;
     }
 
     /**
@@ -42,17 +50,19 @@ class CreateItemsFromPastLaunchesCommandHandler implements CommandHandler
             throw new SorryWrongCommand();
         }
 
-        $items = $this->itemService->itemsFromPastLaunches($command->year(), $command->limit());
+        $items = [];
+        $key = Source::createSpacexSource() . "_{$command->year()}_{$command->limit()}";
+        $cachedItem = $this->cacheItemPool->getItem($key);
+        if (!$cachedItem->isHit()) {
+            $items = $this->itemService->itemsFromPastLaunches($command->year(), $command->limit());
 
-        $response = [];
-        /** @var Item $item */
-        foreach ($items as $item) {
-            if (!$this->itemRepository->ofNumberAndSource($item->number(), $item->source())) {
-                $this->itemRepository->add($item);
-                $response[] = $item;
-            }
+            $cachedItem->set($items);
+            $this->cacheItemPool->save($cachedItem);
+        } else {
+            $items = $cachedItem->get();
         }
 
-        return new CreateItemsFromPastLaunchesResponseDto(...$response);
+
+        return new CreateItemsFromPastLaunchesResponseDto(...$items);
     }
 }

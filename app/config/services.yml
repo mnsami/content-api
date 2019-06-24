@@ -51,12 +51,21 @@ services:
         factory: ['@doctrine.orm.default_entity_manager', getRepository]
         arguments: ['Endouble\Engine\Domain\Model\Item\Item']
 
-    endouble.application.get_all_spacex_past_launches:
+    endouble.application.create_items_from_all_spacex_past_launches:
         class: Endouble\Engine\Application\CreateItemsFromPastLaunches\CreateItemsFromPastLaunchesCommandHandler
         public: true
         arguments:
             $itemService: '@endouble.item.translating.service'
             $itemRepository: '@endouble.item.repository'
+            $cacheItemPool: '@app.cache.items'
+
+    endouble.application.create_items_from_all_xkcd_comics:
+        class: Endouble\Engine\Application\CreateItemsFromAllXkcdComics\CreateItemsFromAllXkcdComicsCommandHandler
+        public: true
+        arguments:
+            $itemService: '@endouble.item.translating.service'
+            $itemRepository: '@endouble.item.repository'
+            $cacheItemPool: '@app.cache.items'
 
     endouble.item.translating.service:
         class: Endouble\Engine\Infrastructure\Service\TranslatingItemService
