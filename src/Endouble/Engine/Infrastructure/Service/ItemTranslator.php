@@ -17,10 +17,11 @@ class ItemTranslator
     {
         $items = [];
         foreach ($launchesRepresentation as $item) {
+            $uri = $item['links']['wikipedia'] ? Uri::createFromString($item['links']['wikipedia']) : Uri::createEmpty();
             $items[] = new Item(
                 new ItemId(),
                 new Name($item['mission_name']),
-                Uri::createFromString($item['links']['wikipedia']),
+                $uri,
                 (new \DateTimeImmutable())->setTimestamp($item['launch_date_unix']),
                 $item['details'] ? new Details($item['details']) : Details::createEmpty(),
                 new ItemNumber($item['flight_number']),

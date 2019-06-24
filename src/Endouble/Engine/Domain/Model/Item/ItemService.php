@@ -10,6 +10,13 @@ interface ItemService
      * @param int $limit
      * @return array
      */
+    public function itemsFromLaunches(int $year = 0, int $limit = 0): array;
+
+    /**
+     * @param int $year
+     * @param int $limit
+     * @return array
+     */
     public function itemsFromPastLaunches(int $year = 0, int $limit = 0): array;
 
     /**

@@ -49,14 +49,13 @@ class GetItemsFromSpaceLaunchesCommandHandler implements CommandHandler
         $key = Source::createSpacexSource() . "_{$command->year()}_{$command->limit()}";
         $cachedItem = $this->cacheItemPool->getItem($key);
         if (!$cachedItem->isHit()) {
-            $items = $this->itemService->itemsFromPastLaunches($command->year(), $command->limit());
+            $items = $this->itemService->itemsFromLaunches($command->year(), $command->limit());
 
             $cachedItem->set($items);
             $this->cacheItemPool->save($cachedItem);
         } else {
             $items = $cachedItem->get();
         }
-
 
         return new ItemsListResponseDto(...$items);
     }

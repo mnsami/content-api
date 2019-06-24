@@ -22,6 +22,11 @@ class TranslatingItemService implements ItemService
         $this->comicAdapter = $comicAdapter;
     }
 
+    public function itemsFromLaunches(int $year = 0, int $limit = 0): array
+    {
+        return $this->launchAdapter->toItemsFromLaunches($year, $limit);
+    }
+
     /**
      * @inheritDoc
      */

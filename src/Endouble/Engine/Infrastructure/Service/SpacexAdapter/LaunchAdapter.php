@@ -12,6 +12,13 @@ interface LaunchAdapter
      * @param int $limit
      * @return array
      */
+    public function toItemsFromLaunches(int $year = 0, int $limit = 0): array;
+
+    /**
+     * @param int $year
+     * @param int $limit
+     * @return array
+     */
     public function toItemsFromPastLaunches(int $year = 0, int $limit = 0): array;
 
     /**
