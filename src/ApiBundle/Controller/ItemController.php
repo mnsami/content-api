@@ -18,6 +18,8 @@ class ItemController extends AbstractFOSRestController
      */
     public function getItemsAction(ItemRequest $itemRequest)
     {
+        $command = $itemRequest->getCommand();
+
         return View::create($itemRequest, 200);
     }
 }

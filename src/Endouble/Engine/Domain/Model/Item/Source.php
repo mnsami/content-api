@@ -11,12 +11,12 @@ final class Source
     /** @var string */
     private $source;
 
-    const SPACEX = 'spacex';
-    const XKCD = 'xkcd';
+    const SPACE = 'space';
+    const COMICS = 'comics';
 
     private const VALID_SOURCES = [
-        self::SPACEX,
-        self::XKCD
+        self::SPACE,
+        self::COMICS
     ];
 
     public function __construct(string $source)
@@ -33,12 +33,12 @@ final class Source
 
     public static function createSpacexSource(): Source
     {
-        return new self(self::SPACEX);
+        return new self(self::SPACE);
     }
 
     public static function createXkcdSource(): Source
     {
-        return new self(self::XKCD);
+        return new self(self::COMICS);
     }
 
     private function validate(string $source)

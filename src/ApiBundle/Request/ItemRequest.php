@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace ApiBundle\Request;
 
+use Endouble\Engine\Application\CreateItemsFromAllXkcdComics\CreateItemsFromAllXkcdComicsCommand;
+use Endouble\Engine\Application\CreateItemsFromPastLaunches\CreateItemsFromPastLaunchesCommand;
+use Endouble\Engine\Domain\Model\Item\Source;
+use Endouble\Shared\Application\Command;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ItemRequest
@@ -21,9 +25,29 @@ class ItemRequest
         if (empty($sourceId)) {
             throw new BadRequestHttpException('SourceId can not be empty.');
         }
+
+        if ($year < 0) {
+            throw new BadRequestHttpException('year can not be negative value.');
+        }
+
+        if ($limit <= 0) {
+            throw new BadRequestHttpException('Limit can not be negative or zero value.');
+        }
+
         $this->sourceId = $sourceId;
         $this->year = $year;
         $this->limit = $limit;
+    }
+
+    public function getCommand(): Command
+    {
+        if ($this->sourceId === Source::SPACE) {
+            return new CreateItemsFromAllXkcdComicsCommand($this->year, $this->limit);
+        } elseif ($this->sourceId === Source::COMICS) {
+            return new CreateItemsFromPastLaunchesCommand($this->year, $this->limit);
+        }
+
+        throw new BadRequestHttpException('SourceId not supported.');
     }
 
     public function sourceId(): string

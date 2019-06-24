@@ -1,11 +1,4 @@
 services:
-  api.service.json_schema_form_validator:
-    class: ApiBundle\Services\JsonSchemaFormValidatorService
-
-  api.service.json_form_validator:
-    class: ApiBundle\Services\JsonFormValidatorService
-    arguments: ["@api.service.json_schema_form_validator"]
-
   api.listeners.response:
     class: ApiBundle\EventListeners\ResponseListener
     tags:
