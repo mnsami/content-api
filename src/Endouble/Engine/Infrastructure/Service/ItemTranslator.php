@@ -6,6 +6,7 @@ namespace Endouble\Engine\Infrastructure\Service;
 use Endouble\Engine\Domain\Model\Item\Item;
 use Endouble\Engine\Domain\Model\Item\ItemId;
 use Endouble\Engine\Domain\Model\Item\ItemNumber;
+use Endouble\Engine\Domain\Model\Item\Name;
 use Endouble\Engine\Domain\Model\Item\Source;
 use Endouble\Shared\Domain\Model\Details;
 use Endouble\Shared\Domain\Model\Uri;
@@ -18,6 +19,7 @@ class ItemTranslator
         foreach ($launchesRepresentation as $item) {
             $items[] = new Item(
                 new ItemId(),
+                new Name($item['mission_name']),
                 Uri::createFromString($item['links']['wikipedia']),
                 (new \DateTimeImmutable())->setTimestamp($item['launch_date_unix']),
                 $item['details'] ? new Details($item['details']) : Details::createEmpty(),
@@ -31,6 +33,36 @@ class ItemTranslator
 
     public function toItemFromLaunch(array $launchRepresentation): ?Item
     {
-        var_dump($launchRepresentation);
+        $details = $launchRepresentation['details'] ? new Details($launchRepresentation['details']) : Details::createEmpty();
+        $date = (new \DateTimeImmutable())
+            ->setTimestamp($launchRepresentation['launch_date_unix']);
+        return new Item(
+            new ItemId(),
+            new Name($launchRepresentation['mission_name']),
+            Uri::createFromString($launchRepresentation['links']['wikipedia']),
+            $date,
+            $details,
+            new ItemNumber($launchRepresentation['flight_number']),
+            Source::createSpacexSource()
+        );
+    }
+
+    public function toItemFromComic(array $comicRepresentation): ?Item
+    {
+        $details = $comicRepresentation['alt'] ? new Details($comicRepresentation['alt']) : Details::createEmpty();
+        $date = (new \DateTimeImmutable())->setDate(
+            intval($comicRepresentation['year']),
+            intval($comicRepresentation['month']),
+            intval($comicRepresentation['day'])
+        );
+        return new Item(
+            new ItemId(),
+            new Name($comicRepresentation['title']),
+            Uri::createFromString($comicRepresentation['link']),
+            $date,
+            $details,
+            new ItemNumber($comicRepresentation['num']),
+            Source::createXkcdSource()
+        );
     }
 }
