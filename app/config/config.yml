@@ -51,7 +51,6 @@ fos_rest:
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
             'Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException': 405
             'Symfony\Component\Debug\Exception\FatalErrorException': 500
-            'Symfony\Component\Debug\Exception\FatalErrorException': 500
         messages:
             'Symfony\Component\Debug\Exception\FatalErrorException': false
             'Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException': true
@@ -72,6 +71,9 @@ fos_rest:
     body_listener: true
 
 sensio_framework_extra:
+    request:
+        converters: true
+        disable: ['doctrine.orm', 'datetime']
     router:
         annotations: false
     view:

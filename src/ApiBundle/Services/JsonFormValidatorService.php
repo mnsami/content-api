@@ -1,17 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace AppBundle\Services;
+namespace ApiBundle\Services;
 
-use AppBundle\Exception\InvalidFormException;
-use AppBundle\Exception\JsonSchemaNotFoundException;
+use ApiBundle\Exception\InvalidFormException;
+use ApiBundle\Exception\JsonSchemaNotFoundException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class JsonFormValidatorService
 {
+    /** @var JsonSchemaFormValidatorService */
     private $jsonSchemaValidator;
 
-    public function __construct($jsonSchemaValidator)
+    public function __construct(JsonSchemaFormValidatorService $jsonSchemaValidator)
     {
         $this->jsonSchemaValidator = $jsonSchemaValidator;
     }
@@ -45,8 +46,7 @@ class JsonFormValidatorService
     private function getActionSchemaMap()
     {
         return array(
-            'create_player' => 'player',
-            'game' => 'game'
+            'get_items' => 'item',
         );
     }
 }

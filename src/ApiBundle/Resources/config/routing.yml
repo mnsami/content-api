@@ -1,0 +1,4 @@
+items:
+    type: rest
+    defaults: {_format: json}
+    resource: ApiBundle\Controller\ItemController

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace AppBundle\Services;
+namespace ApiBundle\Services;
 
 use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;

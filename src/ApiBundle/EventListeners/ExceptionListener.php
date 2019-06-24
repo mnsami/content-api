@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace AppBundle\EventListeners;
+namespace ApiBundle\EventListeners;
 
-use AppBundle\Exception\InvalidFormException;
+use ApiBundle\Exception\InvalidFormException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;

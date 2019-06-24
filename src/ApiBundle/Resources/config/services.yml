@@ -1,0 +1,27 @@
+services:
+  api.service.json_schema_form_validator:
+    class: ApiBundle\Services\JsonSchemaFormValidatorService
+
+  api.service.json_form_validator:
+    class: ApiBundle\Services\JsonFormValidatorService
+    arguments: ["@api.service.json_schema_form_validator"]
+
+  api.listeners.response:
+    class: ApiBundle\EventListeners\ResponseListener
+    tags:
+      - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+    calls:
+      - [setLogger, ["@logger"]]
+
+  api.listeners.exception:
+    class: ApiBundle\EventListeners\ExceptionListener
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception }
+    calls:
+      - [setLogger, ["@logger"]]
+
+  api.request.converter.item:
+    class: ApiBundle\Request\ItemRequestParamConverter
+    tags:
+      - { name: request.param_converter, priority: -2, converter: item }
+

@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {},
+    "id": "http://example.com/example.json",
+    "properties": {
+        "sourceId": {
+            "id": "/properties/sourceId",
+            "type": "string"
+        },
+        "year": {
+            "id": "/properties/year",
+            "type": "integer"
+        },
+        "limit": {
+            "id": "/properties/limit",
+            "type": "integer"
+        },
+    },
+    "required": [
+        "sourceId"
+    ],
+    "type": "object"
+}
