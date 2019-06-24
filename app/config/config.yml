@@ -30,6 +30,14 @@ framework:
     assets: ~
     php_errors:
         log: true
+        throw: false
+    cache:
+        default_memcached_provider: '%memcached_host%'
+        pools:
+            app.cache.items:
+                adapter: cache.adapter.memcached
+                public: true
+                default_lifetime: '%memcached_expire%'
 
 # Twig Configuration
 twig:
@@ -51,6 +59,7 @@ doctrine:
             ItemNumber: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\ItemNumberType
             Uri: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\UriType
             Source: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\SourceType
+            Name: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\NameType
             Details: Endouble\Shared\Infrastructure\Persistence\Doctrine\Type\DetailsType
 
         # if using pdo_sqlite as your database driver:

@@ -27,6 +27,14 @@ services:
       - mysql
       - php-fpm
 
+  memcached:
+    image: memcached:alpine
+    container_name: endouble-memcached
+    restart: on-failure
+    tty: true
+    links:
+      - php-fpm
+
   php-fpm:
     build: docker/php/
     container_name: endouble-php-fpm
@@ -37,7 +45,6 @@ services:
       - mysql
     volumes:
       - ./:/var/www/api
-      - ./logs/api/logs/:/var/www/api/app/logs:cached
 
 #Volumes
 volumes:

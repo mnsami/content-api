@@ -3,12 +3,22 @@ FROM php:7-fpm-alpine
 MAINTAINER Mina Sami <mina.nsami@gmail.com>
 
 RUN apk update \
-    && apk add git curl vim wget bash mysql-client
+    && apk add git \
+        curl \
+        vim \
+        wget \
+        bash \
+        mysql-client \
+        libmemcached-libs \
+        libmemcached-dev \
+        libmemcached \
+        zlib \
+        zlib-dev
 
 RUN apk add --no-cache $PHPIZE_DEPS \
-    && pecl install xdebug \
+    && pecl install -f xdebug memcached \
     && docker-php-ext-install mysqli pdo pdo_mysql \
-    && docker-php-ext-enable xdebug mysqli \
+    && docker-php-ext-enable xdebug mysqli memcached \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Composer

@@ -15,5 +15,9 @@ parameters:
     mailer_user: ~
     mailer_password: ~
 
+    memcached_host: memcached://memcached:11211
+    memcached_prefix: endouble_
+    memcached_expire: 86400
+
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
