@@ -39,6 +39,40 @@ framework:
                 public: true
                 default_lifetime: '%memcached_expire%'
 
+fos_rest:
+    disable_csrf_role: ROLE_API
+    routing_loader:
+        default_format: json
+        include_format: false
+    exception:
+        enabled: false
+        exception_controller: null
+        codes:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
+            'Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException': 405
+            'Symfony\Component\Debug\Exception\FatalErrorException': 500
+            'Symfony\Component\Debug\Exception\FatalErrorException': 500
+        messages:
+            'Symfony\Component\Debug\Exception\FatalErrorException': false
+            'Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException': true
+    view:
+        view_response_listener: force
+        formats:
+            json: true
+            html: false
+        force_redirects:
+            json: true
+            html: false
+        mime_types:
+            json: ['application/json', 'application/json;version=1.0', 'application/json;version=1.1', 'application/json;version=1.2']
+    param_fetcher_listener: true
+    format_listener:
+        rules:
+            - { path: ^/, priorities: [ json ], fallback_format: json, prefer_extension: false }
+    body_listener: true
+
 sensio_framework_extra:
-   router:
+    router:
         annotations: false
+    view:
+        annotations: true

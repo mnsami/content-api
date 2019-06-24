@@ -13,6 +13,9 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new \FOS\RestBundle\FOSRestBundle(),
+            new \JMS\SerializerBundle\JMSSerializerBundle(),
+            new \Symfony\Bundle\TwigBundle\TwigBundle(),
             new AppBundle\AppBundle(),
         ];
 
