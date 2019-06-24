@@ -18,7 +18,7 @@ class HttpLaunchAdapter implements LaunchAdapter
     private const LATEST_LAUNCH = self::LAUNCHES . '/latest';
     private const NEXT_LAUNCH = self::LAUNCHES . '/next';
 
-    /** @var Client */
+    /** @var ClientInterface */
     private $client;
 
     public function __construct(ClientInterface $client)
