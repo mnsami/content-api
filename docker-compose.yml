@@ -33,8 +33,3 @@ services:
       - memcached
     volumes:
       - ./:/var/www/api
-
-#Volumes
-volumes:
-  dbdata:
-    driver: local

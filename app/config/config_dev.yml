@@ -7,10 +7,6 @@ framework:
         strict_requirements: true
     profiler: { only_exceptions: false }
 
-web_profiler:
-    toolbar: true
-    intercept_redirects: false
-
 monolog:
     handlers:
         main:
@@ -36,6 +32,3 @@ monolog:
         #chromephp:
         #    type: chromephp
         #    level: info
-
-#swiftmailer:
-#    delivery_addresses: ['me@example.com']
