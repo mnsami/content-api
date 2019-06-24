@@ -16,6 +16,11 @@ Endouble\Engine\Domain\Model\Item\Item:
       columns: [ number, source ]
   repositoryClass: Endouble\Engine\Infrastructure\Domain\Model\Item\Doctrine\DoctrineItemRepository
   fields:
+    name:
+      type: Name
+      column: name
+      nullable: false
+      length: 255
     number:
       type: ItemNumber
       column: number
@@ -29,7 +34,7 @@ Endouble\Engine\Domain\Model\Item\Item:
       column: details
       nullable: false
     date:
-      type: datetime
+      type: date
       column: date
       nullable: false
     source:
