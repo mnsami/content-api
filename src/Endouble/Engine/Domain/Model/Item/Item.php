@@ -23,11 +23,15 @@ final class Item
     /** @var ItemNumber */
     private $number;
 
+    /** @var Name */
+    private $name;
+
     /** @var Source */
     private $source;
 
     public function __construct(
         ItemId $itemId,
+        Name $name,
         Uri $link,
         \DateTimeImmutable $date,
         Details $details,
@@ -35,6 +39,7 @@ final class Item
         Source $source
     ) {
         $this->itemId = $itemId;
+        $this->name = $name;
         $this->link = $link;
         $this->date = $date;
         $this->details = $details;
@@ -70,5 +75,10 @@ final class Item
     public function source(): Source
     {
         return $this->source;
+    }
+
+    public function name(): Name
+    {
+        return $this->name;
     }
 }
