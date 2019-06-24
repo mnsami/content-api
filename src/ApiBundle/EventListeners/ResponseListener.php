@@ -16,6 +16,29 @@ class ResponseListener implements LoggerAwareInterface
 
     public function onKernelResponse(FilterResponseEvent $event)
     {
+        $request = $event->getRequest();
         $event->getResponse()->headers->set('Content-Type', 'application/json');
+        $content = $event->getResponse()->getContent();
+
+        $sourceId = $request->query->get('sourceId');
+        $year = $request->query->get('year');
+        $limit = $request->query->get('limit', null);
+        $requestPayload = [
+            'sourceId' => $sourceId,
+            'year' => $year
+        ];
+
+        if ($limit !== null) {
+            $requestPayload['limit'] = $limit;
+        }
+
+        $contentPayload = [
+            'meta' => [
+                'request' => $requestPayload,
+                'timestamp' => (new \DateTimeImmutable())->format(\DateTimeImmutable::ATOM)
+            ],
+            'data' => json_decode($content, true)
+        ];
+        $event->getResponse()->setContent(json_encode($contentPayload));
     }
 }
