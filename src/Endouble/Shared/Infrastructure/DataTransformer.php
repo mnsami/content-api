@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Endouble\Shared\Application;
+namespace Endouble\Shared\Infrastructure;
 
 interface DataTransformer
 {

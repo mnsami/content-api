@@ -7,6 +7,7 @@ use Endouble\Engine\Application\CreateItemsFromAllXkcdComics\CreateItemsFromAllX
 use Endouble\Engine\Application\CreateItemsFromPastLaunches\CreateItemsFromPastLaunchesCommand;
 use Endouble\Engine\Domain\Model\Item\Source;
 use Endouble\Shared\Application\Command;
+use Endouble\Shared\Application\CommandHandler;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ItemRequest
@@ -37,6 +38,15 @@ class ItemRequest
         $this->sourceId = $sourceId;
         $this->year = $year;
         $this->limit = $limit;
+    }
+
+    public function getHandler(): CommandHandler
+    {
+        if ($this->sourceId === Source::SPACE) {
+
+        } elseif ($this->sourceId === Source::COMICS) {
+
+        }
     }
 
     public function getCommand(): Command
