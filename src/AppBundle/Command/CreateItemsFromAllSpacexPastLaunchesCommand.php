@@ -5,11 +5,12 @@ namespace AppBundle\Command;
 use Endouble\Engine\Application\CreateItemsFromPastLaunches\CreateItemsFromPastLaunchesCommand;
 use Endouble\Engine\Application\CreateItemsFromPastLaunches\CreateItemsFromPastLaunchesCommandHandler;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Cache\Adapter\MemcachedAdapter;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class GetAllSpacexPastLaunchesCommand extends ContainerAwareCommand
+class CreateItemsFromAllSpacexPastLaunchesCommand extends ContainerAwareCommand
 {
     private const YEAR_ARG = "year";
     private const LIMIT_ARG = "limit";
@@ -29,11 +30,16 @@ class GetAllSpacexPastLaunchesCommand extends ContainerAwareCommand
         $year = $input->getArgument(self::YEAR_ARG) ?? 0;
         $limit = $input->getArgument(self::LIMIT_ARG) ?? 0;
 
-        /** @var CreateItemsFromPastLaunchesCommandHandler $getAllPastLaunchesService */
-        $getAllPastLaunchesService = $this->getContainer()->get('endouble.application.get_all_spacex_past_launches');
-        $itemIds = $getAllPastLaunchesService->handle(
-            new CreateItemsFromPastLaunchesCommand($year, $limit)
-        );
+        try {
+            /** @var CreateItemsFromPastLaunchesCommandHandler $createItemsFromPastLaunchesCommandHandler */
+            $createItemsFromPastLaunchesCommandHandler = $this->getContainer()->get('endouble.application.create_items_from_all_spacex_past_launches');
+            $itemIds = $createItemsFromPastLaunchesCommandHandler->handle(
+                new CreateItemsFromPastLaunchesCommand($year, $limit)
+            );
+        } catch (\Exception $e) {
+            $output->writeln('Failed due to ' . $e->getMessage());
+            exit(1);
+        }
 
         $output->writeln($itemIds->toArray());
     }
