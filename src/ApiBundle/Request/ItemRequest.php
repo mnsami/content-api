@@ -6,8 +6,6 @@ namespace ApiBundle\Request;
 use Endouble\Engine\Application\GetItemsFromComics\GetItemsFromComicsCommand;
 use Endouble\Engine\Application\GetItemsFromSpaceLaunches\GetItemsFromSpaceLaunchesCommand;
 use Endouble\Engine\Domain\Model\Item\Source;
-use Endouble\Shared\Application\Command;
-use Endouble\Shared\Application\CommandHandler;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ItemRequest
