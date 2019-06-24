@@ -30,9 +30,11 @@ interface ItemService
     public function itemFromNextLaunch(): Item;
 
     /**
+     * @param int $year
+     * @param int $limit
      * @return array
      */
-    public function itemsFromComics(): array;
+    public function itemsFromComics(int $year = 0, int $limit = 0): array;
 
     /**
      * @return Item
