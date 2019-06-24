@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Endouble\Engine\Infrastructure\Service;
 
+use Endouble\Engine\Domain\Model\Item\Details;
 use Endouble\Engine\Domain\Model\Item\Item;
 use Endouble\Engine\Domain\Model\Item\ItemId;
 use Endouble\Engine\Domain\Model\Item\ItemNumber;
 use Endouble\Engine\Domain\Model\Item\Name;
 use Endouble\Engine\Domain\Model\Item\Source;
-use Endouble\Shared\Domain\Model\Details;
-use Endouble\Shared\Domain\Model\Uri;
+use Endouble\Engine\Domain\Model\Item\Uri;
 
 class ItemTranslator
 {

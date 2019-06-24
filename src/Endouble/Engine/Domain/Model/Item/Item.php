@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 namespace Endouble\Engine\Domain\Model\Item;
 
-use Endouble\Shared\Domain\Model\Details;
-use Endouble\Shared\Domain\Model\Uri;
-
 final class Item
 {
     /** @var ItemId */

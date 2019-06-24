@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Endouble\Shared\Domain\Model;
+namespace Endouble\Engine\Domain\Model\Item;
 
 use Endouble\Shared\Domain\Model\Exception\SorryInvalidUrl;
 use Endouble\Shared\Domain\Model\Exception\SorryValidationError;
