@@ -8,7 +8,6 @@ RUN apk update \
         vim \
         wget \
         bash \
-        mysql-client \
         libmemcached-libs \
         libmemcached-dev \
         libmemcached \
@@ -17,8 +16,7 @@ RUN apk update \
 
 RUN apk add --no-cache $PHPIZE_DEPS \
     && pecl install -f xdebug memcached \
-    && docker-php-ext-install mysqli pdo pdo_mysql \
-    && docker-php-ext-enable xdebug mysqli memcached \
+    && docker-php-ext-enable xdebug memcached \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Composer

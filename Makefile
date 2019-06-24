@@ -11,7 +11,7 @@ endif
 app/config/parameters.yml:
 	cp app/config/parameters.yml.dist app/config/parameters.yml
 
-all: container-up clear composer lint-composer lint-php lint-json lint-eol phpcs orm-database-create orm-schema-create tests
+all: container-up clear composer lint-composer lint-php lint-json lint-eol phpcs tests
 
 composer:
 	@echo "\n==> Running composer install, runner $(RUNNER)"
@@ -21,7 +21,7 @@ cc:
 	rm -rf var/cache/* var/*.cache
 
 clear: cc
-	rm -rf build/* var/logs/* vendor/ web/bundles/ bin/doc* bin/php* bin/security_checker bin/simple_phpunit
+	rm -rf build/* var/logs/* vendor/ web/bundles/ bin/doc* bin/php* bin/security_checker bin/simple_phpunit coverage/
 
 lint: lint-json lint-yaml lint-php phpcs lint-composer lint-eol
 	@echo All good.
@@ -61,20 +61,6 @@ coverage:
 	@echo "\n==> Generating coverage report"
 	$(CMD) bin/phpunit --coverage-html coverage
 
-orm-database-create:
-	@echo "\n==> Creating database"
-	$(CMD) php bin/console doctrine:database:create
-
-orm-database-drop:
-	@echo "\n==> Dropping database"
-	$(CMD) php bin/console doctrine:database:drop --force
-
-orm-schema-create:
-	$(CMD) php bin/console doctrine:schema:create
-
-orm-schema-drop:
-	$(CMD) php bin/console doctrine:schema:drop --force
-
 container-stop:
 	@echo "\n==> Stopping docker container"
 	$(DOCKER_COMPOSE) stop
@@ -89,4 +75,4 @@ container-up:
 
 tear-down: container-stop container-down
 
-.PHONY: container-up container-stop container-down tear-down all composer cc lint lint-eol lint-composer lint-json lint-yaml lint-php phpcs phpcbf orm-database-create orm-database-drop orm-schema-create orm-schema-drop tests coverage
+.PHONY: container-up container-stop container-down tear-down all composer cc lint lint-eol lint-composer lint-json lint-yaml lint-php phpcs phpcbf tests coverage

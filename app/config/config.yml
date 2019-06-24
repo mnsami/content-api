@@ -54,13 +54,6 @@ doctrine:
         user: '%database_user%'
         password: '%database_password%'
         charset: UTF8
-        types:
-            ItemId: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\ItemIdType
-            ItemNumber: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\ItemNumberType
-            Uri: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\UriType
-            Source: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\SourceType
-            Name: Endouble\Engine\Infrastructure\Persistence\Doctrine\Type\NameType
-            Details: Endouble\Shared\Infrastructure\Persistence\Doctrine\Type\DetailsType
 
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
@@ -72,14 +65,7 @@ doctrine:
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: false
-        mappings:
-            Endouble:
-                type: yml
-                dir: "%kernel.root_dir%/../src/Endouble/Engine/Infrastructure/Persistence/Doctrine/Mapping"
-                is_bundle: false
-                prefix: Endouble\Engine\Domain\Model
-                alias: Endouble
+        auto_mapping: true
 
 # Swiftmailer Configuration
 swiftmailer:

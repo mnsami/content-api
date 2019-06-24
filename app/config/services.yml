@@ -45,18 +45,11 @@ services:
         arguments:
             $client: '@guzzle.client'
 
-    endouble.item.repository:
-        class: Doctrine\ORM\EntityRepository
-        public: true
-        factory: ['@doctrine.orm.default_entity_manager', getRepository]
-        arguments: ['Endouble\Engine\Domain\Model\Item\Item']
-
     endouble.application.create_items_from_all_spacex_past_launches:
         class: Endouble\Engine\Application\CreateItemsFromPastLaunches\CreateItemsFromPastLaunchesCommandHandler
         public: true
         arguments:
             $itemService: '@endouble.item.translating.service'
-            $itemRepository: '@endouble.item.repository'
             $cacheItemPool: '@app.cache.items'
 
     endouble.application.create_items_from_all_xkcd_comics:
@@ -64,7 +57,6 @@ services:
         public: true
         arguments:
             $itemService: '@endouble.item.translating.service'
-            $itemRepository: '@endouble.item.repository'
             $cacheItemPool: '@app.cache.items'
 
     endouble.item.translating.service:

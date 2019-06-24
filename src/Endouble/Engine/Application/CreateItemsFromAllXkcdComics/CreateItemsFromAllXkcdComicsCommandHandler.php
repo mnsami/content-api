@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Endouble\Engine\Application\CreateItemsFromAllXkcdComics;
 
-use Endouble\Engine\Domain\Model\Item\ItemRepository;
 use Endouble\Engine\Domain\Model\Item\ItemService;
 use Endouble\Engine\Domain\Model\Item\Source;
 use Endouble\Shared\Application\Command;
@@ -17,19 +16,14 @@ class CreateItemsFromAllXkcdComicsCommandHandler implements CommandHandler
     /** @var ItemService */
     private $itemService;
 
-    /** @var ItemRepository */
-    private $itemRepository;
-
     /** @var CacheItemPoolInterface */
     private $cacheItemPool;
 
     public function __construct(
         ItemService $itemService,
-        ItemRepository $itemRepository,
         CacheItemPoolInterface $cacheItemPool
     ) {
         $this->itemService = $itemService;
-        $this->itemRepository = $itemRepository;
         $this->cacheItemPool = $cacheItemPool;
     }
 
