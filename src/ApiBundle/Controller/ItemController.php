@@ -19,7 +19,14 @@ class ItemController extends AbstractFOSRestController
     public function getItemsAction(ItemRequest $itemRequest)
     {
         $command = $itemRequest->getCommand();
+        if ($itemRequest->isForComics()) {
+            $handler = $this->get('endouble.application.get_items_from_comics');
+        } elseif ($itemRequest->isForSpace()) {
+            $handler = $this->get('endouble.application.get_items_from_space_launches');
+        }
 
-        return View::create($itemRequest, 200);
+        $result = $handler->handle($command);
+
+        return View::create($result->toArray(), 200);
     }
 }

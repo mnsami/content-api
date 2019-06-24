@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Endouble\Engine\Application\CreateItemsFromAllXkcdComics;
+namespace Endouble\Engine\Application\GetItemsFromSpaceLaunches;
 
-use Endouble\Shared\Application\Command;
+use Endouble\Shared\Infrastructure\Command;
 
-class CreateItemsFromAllXkcdComicsCommand implements Command
+final class GetItemsFromSpaceLaunchesCommand implements Command
 {
     /** @var int */
     private $year;

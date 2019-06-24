@@ -1,17 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Endouble\Engine\Application\CreateItemsFromAllXkcdComics;
+namespace Endouble\Engine\Application\GetItemsFromSpaceLaunches;
 
+use Endouble\Engine\Application\ItemsListResponseDto;
 use Endouble\Engine\Domain\Model\Item\ItemService;
 use Endouble\Engine\Domain\Model\Item\Source;
-use Endouble\Shared\Application\Command;
-use Endouble\Shared\Application\CommandHandler;
-use Endouble\Shared\Application\DataTransformer;
 use Endouble\Shared\Application\Exception\SorryWrongCommand;
+use Endouble\Shared\Infrastructure\Command;
+use Endouble\Shared\Infrastructure\CommandHandler;
+use Endouble\Shared\Infrastructure\DataTransformer;
 use Psr\Cache\CacheItemPoolInterface;
 
-class CreateItemsFromAllXkcdComicsCommandHandler implements CommandHandler
+class GetItemsFromSpaceLaunchesCommandHandler implements CommandHandler
 {
     /** @var ItemService */
     private $itemService;
@@ -28,34 +29,27 @@ class CreateItemsFromAllXkcdComicsCommandHandler implements CommandHandler
     }
 
     /**
-     * Command class name
-     *
-     * @return string
+     * @inheritDoc
      */
     public function handles(): string
     {
-        return CreateItemsFromAllXkcdComicsCommand::class;
+        return GetItemsFromSpaceLaunchesCommand::class;
     }
 
     /**
-     * @param Command $command
-     * @return DataTransformer
-     * @throws \Psr\Cache\InvalidArgumentException
+     * @inheritDoc
      */
     public function handle(Command $command): DataTransformer
     {
-        if (!$command instanceof CreateItemsFromAllXkcdComicsCommand) {
-            throw new SorryWrongCommand();
+        if (!$command instanceof GetItemsFromSpaceLaunchesCommand) {
+            throw new SorryWrongCommand('not support command ' . get_class($command));
         }
 
         $items = [];
-        $key = Source::createXkcdSource() . "_{$command->year()}_{$command->limit()}";
+        $key = Source::createSpacexSource() . "_{$command->year()}_{$command->limit()}";
         $cachedItem = $this->cacheItemPool->getItem($key);
         if (!$cachedItem->isHit()) {
-            $items = $this->itemService->itemsFromComics(
-                $command->year(),
-                $command->limit()
-            );
+            $items = $this->itemService->itemsFromPastLaunches($command->year(), $command->limit());
 
             $cachedItem->set($items);
             $this->cacheItemPool->save($cachedItem);
@@ -63,6 +57,7 @@ class CreateItemsFromAllXkcdComicsCommandHandler implements CommandHandler
             $items = $cachedItem->get();
         }
 
-        return new CreateItemsFromAllXkcdComicsResponseDto(...$items);
+
+        return new ItemsListResponseDto(...$items);
     }
 }

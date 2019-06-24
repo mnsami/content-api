@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace ApiBundle\Request;
 
-use Endouble\Engine\Application\CreateItemsFromAllXkcdComics\CreateItemsFromAllXkcdComicsCommand;
-use Endouble\Engine\Application\CreateItemsFromPastLaunches\CreateItemsFromPastLaunchesCommand;
+use Endouble\Engine\Application\GetItemsFromComics\GetItemsFromComicsCommand;
+use Endouble\Engine\Application\GetItemsFromSpaceLaunches\GetItemsFromSpaceLaunchesCommand;
 use Endouble\Engine\Domain\Model\Item\Source;
 use Endouble\Shared\Application\Command;
 use Endouble\Shared\Application\CommandHandler;
@@ -31,7 +31,7 @@ class ItemRequest
             throw new BadRequestHttpException('year can not be negative value.');
         }
 
-        if ($limit <= 0) {
+        if ($limit < 0) {
             throw new BadRequestHttpException('Limit can not be negative or zero value.');
         }
 
@@ -40,21 +40,22 @@ class ItemRequest
         $this->limit = $limit;
     }
 
-    public function getHandler(): CommandHandler
+    public function isForSpace(): bool
     {
-        if ($this->sourceId === Source::SPACE) {
-
-        } elseif ($this->sourceId === Source::COMICS) {
-
-        }
+        return ($this->sourceId === Source::SPACE);
     }
 
-    public function getCommand(): Command
+    public function isForComics(): bool
+    {
+        return ($this->sourceId === Source::COMICS);
+    }
+
+    public function getCommand()
     {
         if ($this->sourceId === Source::SPACE) {
-            return new CreateItemsFromAllXkcdComicsCommand($this->year, $this->limit);
+            return new GetItemsFromSpaceLaunchesCommand($this->year, $this->limit);
         } elseif ($this->sourceId === Source::COMICS) {
-            return new CreateItemsFromPastLaunchesCommand($this->year, $this->limit);
+            return new GetItemsFromComicsCommand($this->year, $this->limit);
         }
 
         throw new BadRequestHttpException('SourceId not supported.');

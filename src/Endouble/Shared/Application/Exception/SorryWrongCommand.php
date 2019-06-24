@@ -5,9 +5,9 @@ namespace Endouble\Shared\Application\Exception;
 
 class SorryWrongCommand extends \InvalidArgumentException
 {
-    public function __construct()
+    public function __construct($message = null)
     {
-        $message = 'Wrong command passed to handler.';
+        $message = $message ?? 'Wrong command passed to handler.';
 
         parent::__construct($message);
     }
