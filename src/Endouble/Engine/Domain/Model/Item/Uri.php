@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Endouble\Engine\Domain\Model\Item;
 
-use Endouble\Shared\Domain\Model\Exception\SorryInvalidUrl;
-use Endouble\Shared\Domain\Model\Exception\SorryValidationError;
+
+use Endouble\Engine\Domain\Model\Item\Exception\SorryInvalidUrl;
 
 final class Uri
 {
