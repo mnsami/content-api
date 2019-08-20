@@ -19,7 +19,7 @@ class ItemRequest
     /** @var int */
     private $limit;
 
-    public function __construct(string $sourceId, int $year, int $limit)
+    public function __construct(?string $sourceId, int $year, int $limit)
     {
         if (empty($sourceId)) {
             throw new BadRequestHttpException('SourceId can not be empty.');
