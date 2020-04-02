@@ -7,4 +7,4 @@ parameters:
     memcached_expire: 86400
 
     # A secret key that's used to generate certain security-related tokens
-    secret: 51f52ec64284ce9120cfa0b33dfdb79958e08151
+    secret: ThisIsSuperSecret
