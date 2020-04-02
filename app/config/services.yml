@@ -19,33 +19,33 @@ services:
         public: true
 
     http.spacex.launch.adapter:
-        class: Endouble\Engine\Infrastructure\Service\SpacexAdapter\HttpLaunchAdapter
+        class: Content\Engine\Infrastructure\Service\SpacexAdapter\HttpLaunchAdapter
         public: true
         arguments:
             $client: '@guzzle.client'
 
     http.xkcd.comic.adapter:
-        class: Endouble\Engine\Infrastructure\Service\XkcdAdapter\HttpComicAdapter
+        class: Content\Engine\Infrastructure\Service\XkcdAdapter\HttpComicAdapter
         public: true
         arguments:
             $client: '@guzzle.client'
 
-    endouble.application.get_items_from_space_launches:
-        class: Endouble\Engine\Application\GetItemsFromSpaceLaunches\GetItemsFromSpaceLaunchesCommandHandler
+    content.application.get_items_from_space_launches:
+        class: Content\Engine\Application\GetItemsFromSpaceLaunches\GetItemsFromSpaceLaunchesCommandHandler
         public: true
         arguments:
-            $itemService: '@endouble.item.translating.service'
+            $itemService: '@content.item.translating.service'
             $cacheItemPool: '@app.cache.items'
 
-    endouble.application.get_items_from_comics:
-        class: Endouble\Engine\Application\GetItemsFromComics\GetItemsFromComicsCommandHandler
+    content.application.get_items_from_comics:
+        class: Content\Engine\Application\GetItemsFromComics\GetItemsFromComicsCommandHandler
         public: true
         arguments:
-            $itemService: '@endouble.item.translating.service'
+            $itemService: '@content.item.translating.service'
             $cacheItemPool: '@app.cache.items'
 
-    endouble.item.translating.service:
-        class: Endouble\Engine\Infrastructure\Service\TranslatingItemService
+    content.item.translating.service:
+        class: Content\Engine\Infrastructure\Service\TranslatingItemService
         public: true
         arguments:
             $launchAdapter: '@http.spacex.launch.adapter'

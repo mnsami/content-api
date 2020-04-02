@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace ApiBundle\Request;
 
-use Endouble\Engine\Application\GetItemsFromComics\GetItemsFromComicsCommand;
-use Endouble\Engine\Application\GetItemsFromSpaceLaunches\GetItemsFromSpaceLaunchesCommand;
-use Endouble\Engine\Domain\Model\Item\Source;
+use Content\Engine\Application\GetItemsFromComics\GetItemsFromComicsCommand;
+use Content\Engine\Application\GetItemsFromSpaceLaunches\GetItemsFromSpaceLaunchesCommand;
+use Content\Engine\Domain\Model\Item\Source;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ItemRequest

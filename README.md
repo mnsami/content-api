@@ -1,4 +1,6 @@
-# Endouble API
+# Content API
+
+This API is an exercise to apply anti-corruption pattern along with practicing DDD.
 
 ### 1. Frameworks and bundles used
     
@@ -23,8 +25,8 @@ Cache keys are generated like using this formula `sourceId_year_limit`, from the
 
     1.1 checkout the project
     
-        git clone git@github.com:mnsami/endouble-api.git
-        cd endouble-api
+        git clone git@github.com:mnsami/content-api.git
+        cd content-api
         
     1.2. copy `parameters.yml`
     

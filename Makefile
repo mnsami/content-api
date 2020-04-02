@@ -1,5 +1,5 @@
 DOCKER_COMPOSE = docker-compose
-PROJECT = "Endouble API."
+PROJECT = "Content API."
 COMPOSER ?= composer
 
 ifeq ($(RUNNER), travis)

@@ -4,7 +4,7 @@ services:
 
   webserver:
     build: docker/nginx/
-    container_name: endouble-nginx
+    container_name: content-nginx
     restart: on-failure
     tty: true
     ports:
@@ -12,20 +12,20 @@ services:
     volumes:
       - ./:/var/www/api
       - ./logs/nginx/:/var/log/nginx:cached
-      - ./docker/nginx/endoubleapi.conf:/etc/nginx/conf.d/default.conf:cached
+      - ./docker/nginx/contentapi.conf:/etc/nginx/conf.d/default.conf:cached
     links:
       - php-fpm
       - memcached
 
   memcached:
     image: memcached:alpine
-    container_name: endouble-memcached
+    container_name: content-memcached
     restart: on-failure
     tty: true
 
   php-fpm:
     build: docker/php/
-    container_name: endouble-php-fpm
+    container_name: content-php-fpm
     tty: true
     restart: on-failure
     working_dir: /var/www/api

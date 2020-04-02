@@ -3,7 +3,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
     memcached_host: memcached://memcached:11211
-    memcached_prefix: endouble_
+    memcached_prefix: content_
     memcached_expire: 86400
 
     # A secret key that's used to generate certain security-related tokens

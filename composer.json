@@ -1,8 +1,8 @@
 {
-    "name": "mnsami/endouble-api",
+    "name": "mnsami/content-api",
     "license": "MIT",
     "type": "project",
-    "description": "endouble api",
+    "description": "content api",
     "authors": [
         {
             "name": "Mina Nabil Sami",
@@ -12,14 +12,14 @@
     "autoload": {
         "psr-4": {
             "ApiBundle\\": "src/ApiBundle",
-            "Endouble\\": "src/Endouble"
+            "Content\\": "src/Content"
         },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "Endouble\\UnitTests\\": "./tests/unit"
+            "Content\\UnitTests\\": "./tests/unit"
         },
         "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },

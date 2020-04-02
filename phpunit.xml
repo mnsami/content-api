@@ -3,13 +3,13 @@
         colors="true"
         bootstrap="vendor/autoload.php">
     <testsuites>
-        <testsuite name="Endouble-Api Test Suite">
+        <testsuite name="Content-Api Test Suite">
             <directory suffix="Test.php">./tests/unit</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">./src/Endouble/</directory>
+            <directory suffix=".php">./src/Content/</directory>
             <directory suffix=".php">./src/AppBundle/</directory>
             <exclude>
                 <directory>./vendor/</directory>

@@ -20,9 +20,9 @@ class ItemController extends AbstractFOSRestController
     {
         $command = $itemRequest->getCommand();
         if ($itemRequest->isForComics()) {
-            $handler = $this->get('endouble.application.get_items_from_comics');
+            $handler = $this->get('content.application.get_items_from_comics');
         } elseif ($itemRequest->isForSpace()) {
-            $handler = $this->get('endouble.application.get_items_from_space_launches');
+            $handler = $this->get('content.application.get_items_from_space_launches');
         }
 
         $result = $handler->handle($command);
