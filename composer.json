@@ -26,7 +26,7 @@
     "require": {
         "php": ">=7.3",
         "friendsofsymfony/rest-bundle": "^2.5",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^7.4",
         "incenteev/composer-parameter-handler": "^2.0",
         "jms/serializer-bundle": "^3.5",
         "ramsey/uuid": "^3.8",
